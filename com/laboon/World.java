@@ -108,7 +108,7 @@ public class World {
 			}
 		}
 		final long endTime = System.currentTimeMillis();
-		System.out.println("iterate execution time: " + (endTime - startTime) );
+		System.out.println("iterate execution time: " + (endTime - startTime) );//record the time
 		return new World(newCells, _rng);
 	}
 
@@ -132,10 +132,13 @@ public class World {
 //			toReturn += "\n";
 //		}
 //		final long endTime = System.currentTimeMillis();
-//		System.out.println("toString execution time: " + (endTime - startTime) );
+//		System.out.println("toString execution time: " + (endTime - startTime) );//record the time
 //		return toReturn;
 //	}
 	public String toString() {
+		//since  String objects are immutable. Once constructed they cannot be changed anymore.
+		//Whenever you "change" the value of a String you create a new object and make that variable reference this new object.
+		//so I use StringBuilder to refactor this function
 		StringBuilder toReturn=new StringBuilder();
 		toReturn.append("  ");
 		for (int j= 0; j < _size; j++) {
