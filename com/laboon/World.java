@@ -76,9 +76,9 @@ public class World {
 		int downY = (y + 1) % size;
 		
 		if (leftX == -1) { leftX = size - 1; }
-		if (rightX == -1) { rightX = size - 1; }
+		if (rightX == 0) { rightX = 0; }//
 		if (upY == -1) { upY = size - 1; }
-		if (downY == -1) { downY = size - 1; }
+		if (downY == 0) { downY = 0; }//
 		
 		int numNeighbors = 0;
 
@@ -100,12 +100,15 @@ public class World {
 	 */
 	
 	public World iterate() {
+		final long startTime = System.currentTimeMillis();
 		Cell[][] newCells = new Cell[_size][_size];
 		for (int j = 0; j < _size; j++ ) {
 			for (int k = 0; k < _size; k++) {
 				newCells[j][k] = new Cell(_world[j][k].iterate(getNumNeighbors(_world, j, k)), j, k);
 			}
 		}
+		final long endTime = System.currentTimeMillis();
+		System.out.println("iterate execution time: " + (endTime - startTime) );
 		return new World(newCells, _rng);
 	}
 
@@ -114,20 +117,40 @@ public class World {
 	 * @return String representation of world
 	 */
 	
+//	public String toString() {
+//		final long startTime = System.currentTimeMillis();
+//		String toReturn = "  ";
+//		for (int j= 0; j < _size; j++) {
+//			toReturn += String.valueOf(j % 10);
+//		}
+//		toReturn += "\n";
+//		for (int j = 0; j < _size; j++ ) {
+//			toReturn += String.valueOf(j % 10) + " ";
+//			for (int k = 0; k < _size; k++) {
+//				toReturn += (_world[j][k].getStateRep());
+//			}
+//			toReturn += "\n";
+//		}
+//		final long endTime = System.currentTimeMillis();
+//		System.out.println("toString execution time: " + (endTime - startTime) );
+//		return toReturn;
+//	}
 	public String toString() {
-		String toReturn = "  ";
+		StringBuilder toReturn=new StringBuilder();
+		toReturn.append("  ");
 		for (int j= 0; j < _size; j++) {
-			toReturn += String.valueOf(j % 10);
+			toReturn.append(String.valueOf(j % 10));
 		}
-		toReturn += "\n";
+		
+		toReturn.append("\n");
 		for (int j = 0; j < _size; j++ ) {
-			toReturn += String.valueOf(j % 10) + " ";
+			toReturn.append(String.valueOf(j % 10) + " ");
 			for (int k = 0; k < _size; k++) {
-				toReturn += (_world[j][k].getStateRep());
+				toReturn.append(_world[j][k].getStateRep());
 			}
-			toReturn += "\n";
+			toReturn.append("\n");
 		}
-		return toReturn;
+		return toReturn.toString();
 	}
 	
 	/**
