@@ -117,44 +117,44 @@ public class World {
 	 * @return String representation of world
 	 */
 	
-//	public String toString() {
-//		final long startTime = System.currentTimeMillis();
-//		String toReturn = "  ";
-//		for (int j= 0; j < _size; j++) {
-//			toReturn += String.valueOf(j % 10);
-//		}
-//		toReturn += "\n";
-//		for (int j = 0; j < _size; j++ ) {
-//			toReturn += String.valueOf(j % 10) + " ";
-//			for (int k = 0; k < _size; k++) {
-//				toReturn += (_world[j][k].getStateRep());
-//			}
-//			toReturn += "\n";
-//		}
-//		final long endTime = System.currentTimeMillis();
-//		System.out.println("toString execution time: " + (endTime - startTime) );//record the time
-//		return toReturn;
-//	}
 	public String toString() {
-		//since  String objects are immutable. Once constructed they cannot be changed anymore.
-		//Whenever you "change" the value of a String you create a new object and make that variable reference this new object.
-		//so I use StringBuilder to refactor this function
-		StringBuilder toReturn=new StringBuilder();
-		toReturn.append("  ");
+		final long startTime = System.currentTimeMillis();
+		String toReturn = "  ";
 		for (int j= 0; j < _size; j++) {
-			toReturn.append(String.valueOf(j % 10));
+			toReturn += String.valueOf(j % 10);
 		}
-		
-		toReturn.append("\n");
+		toReturn += "\n";
 		for (int j = 0; j < _size; j++ ) {
-			toReturn.append(String.valueOf(j % 10) + " ");
+			toReturn += String.valueOf(j % 10) + " ";
 			for (int k = 0; k < _size; k++) {
-				toReturn.append(_world[j][k].getStateRep());
+				toReturn += (_world[j][k].getStateRep());
 			}
-			toReturn.append("\n");
+			toReturn += "\n";
 		}
-		return toReturn.toString();
+		final long endTime = System.currentTimeMillis();
+		System.out.println("toString execution time: " + (endTime - startTime) );//record the time
+		return toReturn;
 	}
+//	public String toString() {
+//		//since  String objects are immutable. Once constructed they cannot be changed anymore.
+//		//Whenever you "change" the value of a String you create a new object and make that variable reference this new object.
+//		//so I use StringBuilder to refactor this function
+//		StringBuilder toReturn=new StringBuilder();
+//		toReturn.append("  ");
+//		for (int j= 0; j < _size; j++) {
+//			toReturn.append(String.valueOf(j % 10));
+//		}
+//		
+//		toReturn.append("\n");
+//		for (int j = 0; j < _size; j++ ) {
+//			toReturn.append(String.valueOf(j % 10) + " ");
+//			for (int k = 0; k < _size; k++) {
+//				toReturn.append(_world[j][k].getStateRep());
+//			}
+//			toReturn.append("\n");
+//		}
+//		return toReturn.toString();
+//	}
 	
 	/**
 	 * Generate initial game board.

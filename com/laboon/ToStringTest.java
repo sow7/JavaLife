@@ -52,6 +52,25 @@ public class ToStringTest {
 		}
 		World w1=new World(c,m);
 		World w2=new World(c,m);
+		w1=w1.iterate();
+		w2=w2.iterate();
+		
+		assertEquals(w1.toString(),w2.toString());
+	}
+	
+	//making two same worlds with the second constructor, and iterate() them once, to test the ressults are euqualled.
+	
+	@Test
+	public void SameWorldIterateTest2() {
+		Random m =new Random(1);
+		Cell[][] c= new Cell[10][10];
+		for (int j = 0; j < 10; j++ ) {
+			for (int k = 0; k < 10; k++) {
+				c[j][k] = new Cell(State.DEAD, j, k);
+			}
+		}
+		World w1=new World(c,m);
+		World w2=new World(c,m);
 		
 		assertEquals(w1.toString(),w2.toString());
 	}
